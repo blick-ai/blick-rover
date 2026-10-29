@@ -1,0 +1,16 @@
+[Unit]
+Description=Blick - captura ZED
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jetson
+WorkingDirectory=/home/jetson
+ExecStart=/usr/bin/python3 /home/jetson/capturar_zed.py --intervalo 2 --saida /home/jetson/capturas
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=blick.target
+

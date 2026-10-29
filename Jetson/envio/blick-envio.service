@@ -1,0 +1,16 @@
+[Unit]
+Description=Blick - envio de fotos aprovadas
+After=network-online.target blick-analise.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jetson
+WorkingDirectory=/home/jetson
+ExecStart=/bin/sh -c 'while true; do /usr/bin/python3 /home/jetson/enviar_pendentes.py --saida /home/jetson/aprovadas; sleep 15; done'
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=blick.target
+

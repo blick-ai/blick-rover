@@ -1,0 +1,14 @@
+[Unit]
+Description=Blick - analise HSV
+After=blick-captura.service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+Type=simple
+WorkingDirectory=/home/jetson
+ExecStart=/usr/bin/python3 /home/jetson/analisar_imagem.py --entrada /home/jetson/capturas --saida /home/jetson/aprovadas --threshold 5
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
